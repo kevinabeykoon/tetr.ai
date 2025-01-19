@@ -2,6 +2,10 @@ import cv2
 import mediapipe as mp
 import time
 
+
+valid_commands = ['up', 'down', 'left', 'right']
+file_path='command.txt'
+
 # Initialize MediaPipe Hands and Drawing utilities
 mp_hands = mp.solutions.hands
 mp_drawing = mp.solutions.drawing_utils
@@ -53,7 +57,7 @@ def recognize_gesture(landmarks):
         PINKY_DIP_Y = landmarks[19].y
         PINKY_TIP_X = landmarks[20].x
         PINKY_TIP_Y = landmarks[20].y
-
+        command_gesture = None
 
         if (INDEX_FINGER_TIP_X > INDEX_FINGER_MCP_X > WRIST_X
                 and INDEX_FINGER_PIP_X > MIDDLE_FINGER_TIP_X
@@ -62,7 +66,8 @@ def recognize_gesture(landmarks):
                 and INDEX_FINGER_MCP_Y < MIDDLE_FINGER_MCP_Y
                 and INDEX_FINGER_MCP_Y < RING_FINGER_MCP_Y
                 and INDEX_FINGER_MCP_Y < PINKY_MCP_Y):
-            return "Pointing Left"
+            command_gesture = "left"
+            return command_gesture
 
         elif (WRIST_X > THUMB_CMC_X > THUMB_MCP_X > THUMB_IP_X > THUMB_TIP_X
                 and PINKY_MCP_X > INDEX_FINGER_MCP_X > THUMB_IP_X
@@ -75,7 +80,8 @@ def recognize_gesture(landmarks):
                 and MIDDLE_FINGER_TIP_Y > MIDDLE_FINGER_MCP_Y
                 and RING_FINGER_TIP_Y > RING_FINGER_MCP_Y
                 and PINKY_TIP_Y > PINKY_MCP_Y):
-            return "Pointing Right"
+            command_gesture = "right"
+            return command_gesture
 
         else:
             return "Unidentified"
@@ -116,7 +122,18 @@ with mp_hands.Hands(
                 current_time = time.time()
                 if current_time - last_output_time >= output_interval:
                     gesture = recognize_gesture(hand_landmarks.landmark)
-                    print(gesture)
+
+                    if gesture == 'exit':
+                        print("game finished")
+                        break
+
+                    if gesture in valid_commands:
+                        with open(file_path, 'w') as file:
+                            file.write(gesture)
+                        print("Command", gesture, "is written in file")
+                    else:
+                        print("⚠️ invalid command")
+
                     last_output_time = current_time
 
         # Display the frame
