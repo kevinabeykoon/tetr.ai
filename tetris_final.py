@@ -30,6 +30,12 @@ are present in the folder:
 5. tetris_music.mp3
 6. PokemonGb-RAeo.ttf
 7. Tetr.ai_Logo.png
+
+Then open terminal:
+>>> python3 tetris_final.py (If you want to play game by using keyboard)
+
+Open another terminal and run:
+>>> python3 hand_gesture_recognition.py (If you want to play game by using gesture)
 """
 
 
