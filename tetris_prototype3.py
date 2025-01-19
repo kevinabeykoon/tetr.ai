@@ -3,6 +3,7 @@ import sys
 import time
 
 import pygame
+import pygame.freetype
 from blocks import block_000, block_001, block_002, block_003, block_004, block_005, block_006
 
 
@@ -150,6 +151,10 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     pygame.display.set_caption('Tretr.ai')
 
+    pygame.mixer.init()
+    pygame.mixer.music.load("C:\\Users\\noosu\\Documents\\python projects\\tetris music.mp3")
+    pygame.mixer.music.play(loops=  -1, start= 0.0)
+
     # get the current block
     current_block = get_block()
 
@@ -169,8 +174,8 @@ def main():
     stop_all_block_list = [['.' for i in range(BLOCK_COL_NUM)] for j in range(BLOCK_ROW_NUM)]
 
     # font
-    font = pygame.font.SysFont(None, 36)
-    game_over_font = pygame.font.SysFont(None, 36)
+    font = pygame.font.Font("C:\\Users\\noosu\\Documents\\python projects\\PokemonGb-RAeo.ttf", 20)
+    game_over_font = pygame.font.Font("C:\\Users\\noosu\\Documents\\python projects\\PokemonGb-RAeo.ttf", 20)
     game_over_font_width, game_over_font_height = game_over_font.size('GAME OVER')
     game_again_font_width, game_again_font_height = font.size('NEW GAME')
 
@@ -192,7 +197,7 @@ def main():
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_p:
                     paused = not paused
-
+                    pygame.mixer.music.play(loops=  -1, start= 0.0)
                 elif event.key == pygame.K_LEFT:
                     if judge_move_left(current_block, current_block_start_col - 1):
                         current_block_start_col -= 1
@@ -269,35 +274,42 @@ def main():
             pygame.draw.line(screen, (0, 0, 0), (0, y * SIZE), (BLOCK_COL_NUM * SIZE, y * SIZE), 1)
 
         # Game information
+
+        image = pygame.image.load("C:\\Users\\noosu\\Documents\\python projects\\Tetr.ai_Logo.png").convert()
+        scaledImage = pygame.transform.smoothscale(image, (143,80))
+        screen.blit(scaledImage, (306, 3))
         # Score
-        score_show_msg = font.render('Score: ', True, (255, 255, 255))
-        screen.blit(score_show_msg, (BLOCK_COL_NUM * SIZE + 10, 10))
-        score_show_msg = font.render(str(score), True, (255, 255, 255))
-        screen.blit(score_show_msg, (BLOCK_COL_NUM * SIZE + 10, 50))
+        score_show_msg = font.render('Score: ', True, (150, 130, 200))
+        screen.blit(score_show_msg, (BLOCK_COL_NUM * SIZE + 10, 160))
+        score_show_msg = font.render(str(score), True, (150, 130, 200))
+        screen.blit(score_show_msg, (BLOCK_COL_NUM * SIZE + 10, 200))
         # Speed
-        speed_show_msg = font.render('Speed: ', True, (255, 255, 255))
-        screen.blit(speed_show_msg, (BLOCK_COL_NUM * SIZE + 10, 100))
-        speed_show_msg = font.render(speed_info, True, (255, 255, 255))
-        screen.blit(speed_show_msg, (BLOCK_COL_NUM * SIZE + 10, 150))
+        speed_show_msg = font.render('Speed: ', True, (150, 130, 200))
+        screen.blit(speed_show_msg, (BLOCK_COL_NUM * SIZE + 10, 250))
+        speed_show_msg = font.render(speed_info, True, (150, 130, 200))
+        screen.blit(speed_show_msg, (BLOCK_COL_NUM * SIZE + 10, 290))
         # Next Block
-        next_style_msg = font.render('Next Block: ', True, (255, 255, 255))
-        screen.blit(next_style_msg, (BLOCK_COL_NUM * SIZE + 10, 200))
+        next_style_msg = font.render('Next ', True, (150, 130, 200))
+        screen.blit(next_style_msg, (BLOCK_COL_NUM * SIZE + 10, 350))
+        next_style_msg = font.render('Block: ', True, (150, 130, 200))
+        screen.blit(next_style_msg, (BLOCK_COL_NUM * SIZE + 10, 390))
         # Next Block
         for row, line in enumerate(next_block):
             for col, block in enumerate(line):
                 if block != '.':
-                    pygame.draw.rect(screen, COLOR_DICT[block], (320 + SIZE * col, (BLOCK_COL_NUM + row) * SIZE, SIZE, SIZE), 0)
+                    pygame.draw.rect(screen, COLOR_DICT[block], (320 + SIZE * col, (BLOCK_COL_NUM + row) * SIZE + 140, SIZE, SIZE), 0)
                     # left
-                    pygame.draw.line(screen, (0, 0, 0), (320 + SIZE * col, (BLOCK_COL_NUM + row) * SIZE), (320 + SIZE * col, (BLOCK_COL_NUM + row + 1) * SIZE), 1)
+                    pygame.draw.line(screen, (0, 0, 0), (320 + SIZE * col, (BLOCK_COL_NUM + row) * SIZE + 140), (320 + SIZE * col, (BLOCK_COL_NUM + row + 1) * SIZE + 140), 1)
                     # up
-                    pygame.draw.line(screen, (0, 0, 0), (320 + SIZE * col, (BLOCK_COL_NUM + row) * SIZE), (320 + SIZE * (col + 1), (BLOCK_COL_NUM + row) * SIZE), 1)
+                    pygame.draw.line(screen, (0, 0, 0), (320 + SIZE * col, (BLOCK_COL_NUM + row) * SIZE + 140), (320 + SIZE * (col + 1), (BLOCK_COL_NUM + row) * SIZE + 140), 1)
                     # down
-                    pygame.draw.line(screen, (0, 0, 0), (320 + SIZE * col, (BLOCK_COL_NUM + row + 1) * SIZE), (320 + SIZE * (col + 1), (BLOCK_COL_NUM + row + 1) * SIZE), 1)
+                    pygame.draw.line(screen, (0, 0, 0), (320 + SIZE * col, (BLOCK_COL_NUM + row + 1) * SIZE + 140), (320 + SIZE * (col + 1), (BLOCK_COL_NUM + row + 1) * SIZE + 140), 1)
                     # right
-                    pygame.draw.line(screen, (0, 0, 0), (320 + SIZE * (col + 1), (BLOCK_COL_NUM + row) * SIZE), (320 + SIZE * (col + 1), (BLOCK_COL_NUM + row + 1) * SIZE), 1)
+                    pygame.draw.line(screen, (0, 0, 0), (320 + SIZE * (col + 1), (BLOCK_COL_NUM + row) * SIZE + 140), (320 + SIZE * (col + 1), (BLOCK_COL_NUM + row + 1) * SIZE + 140), 1)
 
         # game pause situation
         if paused:
+            pygame.mixer.music.pause()
             pause_msg = font.render('PAUSED', True, (255, 255, 0))
             screen.blit(pause_msg, ((SCREEN_WIDTH - pause_msg.get_width()) // 2, SCREEN_HEIGHT // 2))
             resume_msg = font.render('Press P to Resume', True, (255, 255, 0))
@@ -305,8 +317,10 @@ def main():
 
         # game over situation
         if game_over:
+            pygame.mixer.music.stop()
             game_over_tips = game_over_font.render('GAME OVER', True, RED)
             screen.blit(game_over_tips, ((SCREEN_WIDTH - game_over_font_width) // 2, (SCREEN_HEIGHT - game_over_font_height) // 2))
+
             # restart the new game
             game_again = font.render('NEW GAME', True, RED)
             screen.blit(game_again, ((SCREEN_WIDTH - game_again_font_width) // 2, (SCREEN_HEIGHT - game_again_font_height) // 2 + 80))
