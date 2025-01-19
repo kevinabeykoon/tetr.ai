@@ -1,3 +1,41 @@
+"""
+tetris_final.py
+This Python file implements a Tetris game using Pygame, enhanced with a basic
+AI recommendation system. The game features essential mechanics such as block
+generation, movement, rotation, and row clearing. An AI module suggests the
+best row and rotation for the current block based on a scoring function that
+evaluates the number of cleared lines, the presence of holes, and the stack
+height. The recommended is highlighted on the bottom-right  corner of the game
+board, while the suggested rotation is also displayed in the bottom-right
+corner.
+
+Authors: Yifan Qin, Kevin Abeykoon, Joanna Joy, Vivian Ma
+
+The foundation of this project is based on an article from Zhihu, and we
+have built upon it with several enhancements. We fixed bugs in the original
+implementation and introduced new features such as multi-colored blocks,
+background music, AI recommendations, and gesture recognition.
+Link: https://zhuanlan.zhihu.com/p/353922161
+
+
+Notes:
+In order to run the program, please ensure that your terminal is navigated
+to the correct directory. Additionally, make sure that all necessary files
+are present in the folder:
+
+1. tetris_final.py
+2. hand_gesture_recognition.py
+3. blocks.py
+4. command.txt (Blank file)
+5. tetris_music.mp3
+6. PokemonGb-RAeo.ttf
+7. Tetr.ai_Logo.png
+"""
+
+
+
+
+
 import random
 import sys
 import time
