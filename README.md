@@ -25,13 +25,13 @@ Outsourced files:
 ### Running the Program
 1. You can run tetris.py and hand_gesture_recognition.py simultaneously in terminal/IDE/mix of both.
 
-# Authors:
+## Authors:
 - Vivian Ma
 - Kevin AbeyKoon
 - Joanna Joy
 - Yifan Qin
 
-# References
+## References
 1. https://ai.google.dev/edge/mediapipe/solutions/vision/gesture_recognizer
 2. https://zhuanlan.zhihu.com/p/353922161
 3. 
