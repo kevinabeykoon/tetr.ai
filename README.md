@@ -1,6 +1,8 @@
 # Tetr.ai Retro Game
 
 
+Tetr.ai is a game that fuses both modern and retro aspects of gaming. We took the classic game fo Tetris and put a spin on it: Artificial Intelligence! While all the functionalities of normal Tetris is there, like rotating or moving a block using the arrow keys, we allow users to use their camera and hand to make gestures. The program uses uses MediaPipe's artificial intelligence model to tell the program  where all the joints in the user's hand is. The program then uses a set of logic to determine which gesture the user is making: Left, Right, Rotate, or Speed the Block Up, Hint. The hand gestures work exactly how the arrow keys would. We also built a machine learning model for the Hint System, by raising your hand up, the game will give the user two hints: How many rotations and columns/rows needed to shift by to get the best block location.
+
 
 ## Built With
 1. Python
