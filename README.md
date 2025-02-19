@@ -1,4 +1,4 @@
-# Retro Tetr.ai Game x Aritifical Intelligence 
+# Tetr.ai Game x AI
 
 <a href="https://www.youtube.com/watch?v=yfEJuUH45Xg" target="_blank"><img src="https://github.com/user-attachments/assets/354f9527-7515-4042-befd-8eb36ad5f1af" 
 alt="Image of program and the demo link" width="1252" /></a>
