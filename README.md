@@ -1,8 +1,15 @@
-# Tetr.ai Retro Game
+# Retro Tetr.ai Game x Aritifical Intelligence 
+
+<a href="https://www.youtube.com/watch?v=yfEJuUH45Xg" target="_blank"><img src="https://github.com/user-attachments/assets/354f9527-7515-4042-befd-8eb36ad5f1af" 
+alt="Image of program and the demo link" width="1252" /></a>
+
+
 
 
 Tetr.ai is a game that fuses both modern and retro aspects of gaming. We took the classic game fo Tetris and put a spin on it: Artificial Intelligence! While all the functionalities of normal Tetris is there, like rotating or moving a block using the arrow keys, we allow users to use their camera and hand to make gestures. The program uses uses MediaPipe's artificial intelligence model to tell the program  where all the joints in the user's hand is. The program then uses a set of logic to determine which gesture the user is making: Left, Right, Rotate, or Speed the Block Up, Hint. The hand gestures work exactly how the arrow keys would. We also built a machine learning model for the Hint System, by raising your hand up, the game will give the user two hints: How many rotations and columns/rows needed to shift by to get the best block location.
 
+## Demo
+You can click the image above or copy and paste the following link into your browser: [https://www.youtube.com/watch?v=yfEJuUH45Xg](https://www.youtube.com/watch?v=yfEJuUH45Xg)
 
 ## Built With
 1. Python
@@ -19,7 +26,6 @@ For the hand_gesture_recognition file:
 
 For the Tetris game:
 * pip install pygame
-
 Outsourced files:
 * PokemonGb-RAeo.ttf (font)
 * tetris_music.mp3 (audio)
@@ -29,11 +35,11 @@ Outsourced files:
 
 ## Authors:
 - Vivian Ma
-- Kevin AbeyKoon
+- Kevin Abeykoon
 - Joanna Joy
 - Yifan Qin
 
 ## References
 1. https://ai.google.dev/edge/mediapipe/solutions/vision/gesture_recognizer
 2. https://zhuanlan.zhihu.com/p/353922161
-3. 
+
