@@ -31,7 +31,7 @@ Outsourced files:
 * tetris_music.mp3 (audio)
 
 ### Running the Program
-1. You can run tetris.py and hand_gesture_recognition.py simultaneously in terminal/IDE/mix of both.
+Run tetris.py and hand_gesture_recognition.py simultaneously in terminal/IDE/mix of both.
 
 ## Authors:
 - Vivian Ma
